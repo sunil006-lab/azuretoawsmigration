@@ -1,73 +1,87 @@
-# Azure-to-AWS Migration AI Agent
+﻿# Azure-to-AWS Migration Agent 🚀
 
 ## Overview
-This project provides an AI-powered agent to automate IAM policy validation and CI/CD pipeline mapping during Azure-to-AWS cloud migration. The solution streamlines migration, 
-reduces manual effort, and ensures compliance and operational continuity.
+This AI-powered migration agent automates the transition of IAM policies, CI/CD pipelines, and cloud service configurations from Azure to AWS. Built with a modular architecture, it enables seamless integration of new services and ensures compliance, traceability, and operational continuity.
 
-## Features
-- Automated IAM policy validation and migration from Azure to AWS.
-- CI/CD pipeline mapping from Azure DevOps to AWS CodePipeline (or other AWS CI/CD services).
-- Modular, extensible architecture for easy integration of new features.
-- Logging and reporting for migration activities.
+## 🔧 Features
+- IAM policy validation and migration (Azure AD → AWS IAM)
+- CI/CD pipeline mapping (Azure DevOps → AWS CodePipeline)
+- Extensible service modules (S3, Lambda, RDS, etc.)
+- Centralized logging, error handling, and reporting
+- Config-driven orchestration for flexible execution
 
-## Project Structure
-- **AzuretoAWS_migration.py**: Main entry point for the migration agent.
-- **iam_validation/**: Contains logic and modules for validating and migrating IAM policies from Azure to AWS.
-  - **azure/**: Modules for handling Azure IAM policies.
-  - **aws/**: Modules for handling AWS IAM policies.
-  - **utils/**: Utility functions and classes used for IAM validation.
-  - **tests/**: Unit tests for IAM validation logic.
-- **cicd_mapping/**: Contains logic for mapping and automating CI/CD pipeline migration between Azure and AWS.
-  - **azure/**: Modules for extracting and analyzing Azure DevOps pipelines.
-  - **aws/**: Modules for generating AWS CodePipeline configurations.
-  - **utils/**: Utility functions for pipeline mapping.
-  - **tests/**: Unit tests for CI/CD mapping logic.
-- **utils/**: Shared utility functions and helpers used across the project.
-- **data/**: Sample data, configuration files, and migration templates.
-- **tests/**: Integration and end-to-end tests for the overall migration process.
-- **docs/**: Documentation, guides, and reference materials for users and developers.
+## 🧩 Directory Structure
+migration_agent/
+├── core/                  # Shared orchestration logic
+│   └── runner.py
+├── services/              # Each cloud service gets its own module
+│   ├── iam/
+│   ├── cicd/
+│   ├── s3/
+│   ├── lambda/
+│   └── rds/
+├── utils/                 # Common helpers (logging, config, auth)
+├── config/                # YAML/JSON configs for service mappings
+└── main.py     # Entry point: parses args, invokes runner
 
-## Requirements
-- Python 3.8 or higher
-- Azure SDK for Python
-- Boto3 (AWS SDK for Python)
-- Pytest (for testing)
 
-## Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/AzuretoAWS-migration.git
-    cd AzuretoAWS-migration
-    ```
-2. Install the required packages:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. Set up your Azure and AWS credentials:
-    - For Azure, set the environment variables `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, and `AZURE_CLIENT_SECRET`.
-    - For AWS, configure your credentials using the AWS CLI or set the environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
-4. Run the migration agent:
-    ```bash
-    python AzuretoAWS_migration.py
-    ```
-5. Monitor the migration process:
-    - Check the logs for any errors or warnings.
-    - Verify the migrated IAM policies and CI/CD pipelines in AWS.
-6. Run tests to ensure everything is working correctly:
-    ```bash
-    pytest tests/
-    ```
+## 🚀 Getting Started
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/AzuretoAWS-migration-agent.git
+cd AzuretoAWS-migration-agent
 
-## Troubleshooting
-- If you encounter any issues, check the logs for error messages.
-- Ensure that your Azure and AWS credentials are correctly configured.
-- Refer to the documentation for the Azure SDK and Boto3 for additional help.
+Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+### 2. Configure Migration Settings
+Edit the `config/migration_config.yaml` file to specify your Azure and AWS credentials, target
+regions, and any specific service mappings you need.
+Set environment variables or use SDK config files:
+• 	Azure:  AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECERET
+• 	AWS: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+### 3. Run the Migration Agent
+```bash
+python main.py --config config/default.yaml
+```
 
-## Contributing
-Contributions are welcome! Please submit pull requests or open issues for feature requests and bug reports.
+### 4. Monitor Progress
+Check the logs in `logs/migration.log` for detailed progress and any errors encountered during the migration.
+## 📄 License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details
+## 📞 Support
+For issues or feature requests, please open an issue on GitHub or contact the maintainers at
+[AzuretoAWS-migration-agent](https://github.com/your-username/AzuretoAWS-migration-agent)
 
-## License
-This project is licensed under the MIT License.
+🧠Adding a New Service
+To add a new cloud service migration:
+- Create a folder under services/ (e.g., services/ec2)
+- Implement a run(config, logger) method
+- Register the service in core/runner.py
+- Add config templates in config/
+- Write unit tests in tests/
+🤝 Contributing
+Pull requests and feature ideas are welcome! Please follow modular design principles and include test coverage.
+📜 License
+MIT License
+📬 Contact
+For support or collaboration, reach out to the project team at [kumarm.1@tcs.com, sunilmkr79@gmail.com]
 
-## Contact
-For support or inquiries, please contact the project team at [kumarm.1@tcs.com & sunilmkr79@gmail.com].
+## Run instructions: (select specific services to migrate)
+```bash
+python main.py --services iam s3 lambda rds cicd --config config/default.yaml
+```
+## 🧪 Testing
+```bash
+pytest tests/
+```	
+## Run instructions: (run all services)
+```bash
+python run_all.py
+```
+## 📝 Documentation
+```bash	
+python docs/generate_docs.py
+```
+

@@ -1,0 +1,61 @@
+policies:
+  - name: OptiFlowAdminPolicy
+    description: Full access to OptiFlow services
+    permissions:
+      - ec2:DescribeInstances
+      - ec2:StartInstances
+      - ec2:StopInstances
+      - s3:ListBucket
+      - s3:GetObject
+      - s3:PutObject
+      - rds:DescribeDBInstances
+      - lambda:InvokeFunction
+    tags:
+      Project: OptiFlow
+      Environment: production
+      Owner: Sunil
+
+  - name: OptiFlowReadOnly
+    description: Read-only access for auditing
+    permissions:
+      - s3:ListBucket
+      - s3:GetObject
+      - ec2:DescribeInstances
+      - rds:DescribeDBInstances
+    tags:
+      Project: OptiFlow
+      Environment: audit
+      Owner: Sunil
+
+roles:
+  - name: OptiFlowExecutionRole
+    description: Role for Lambda and EC2 execution
+    trust_policy:
+      Version: "2012-10-17"
+      Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+              - lambda.amazonaws.com
+              - ec2.amazonaws.com
+          Action: sts:AssumeRole
+    attach_policies:
+      - OptiFlowAdminPolicy
+    tags:
+      Project: OptiFlow
+      Owner: Sunil
+
+  - name: OptiFlowAuditRole
+    description: Role for read-only access
+    trust_policy:
+      Version: "2012-10-17"
+      Statement:
+        - Effect: Allow
+          Principal:
+            AWS: arn:aws:iam::123456789012:user/AuditUser
+          Action: sts:AssumeRole
+    attach_policies:
+      - OptiFlowReadOnly
+    tags:
+      Project: OptiFlow
+      Owner: Sunil

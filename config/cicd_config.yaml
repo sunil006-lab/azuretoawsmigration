@@ -1,0 +1,40 @@
+pipeline:
+  name: OptiFlow-CICD
+  role_arn: arn:aws:iam::123456789012:role/CodePipelineServiceRole
+  artifact_bucket: optiflow-artifacts
+  region: ap-south-1
+
+  stages:
+    - name: Source
+      action: Source
+      provider: GitHub
+      configuration:
+        Owner: optiflow-org
+        Repo: optiflow-app
+        Branch: main
+        OAuthToken: "{{GITHUB_TOKEN}}"
+
+    - name: Build
+      action: Build
+      provider: CodeBuild
+      configuration:
+        ProjectName: optiflow-build
+        EnvironmentVariables:
+          - name: NODE_ENV
+            value: production
+          - name: SERVICE
+            value: api
+
+    - name: Deploy
+      action: Deploy
+      provider: CloudFormation
+      configuration:
+        StackName: OptiFlowStack
+        TemplatePath: templates/infra.yaml
+        Capabilities:
+          - CAPABILITY_NAMED_IAM
+
+tags:
+  Project: OptiFlow
+  Environment: production
+  Owner: Sunil

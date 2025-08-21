@@ -1,0 +1,26 @@
+buckets:
+  - name: optiflow-prod-assets
+    region: ap-south-1
+    acl: private
+    tags:
+      Project: OptiFlow
+      Environment: production
+      Owner: Sunil
+    objects:
+      - key: logos/brand.png
+        source: assets/brand.png
+      - key: docs/readme.pdf
+        source: docs/OptiFlow_README.pdf
+
+  - name: optiflow-dev-assets
+    region: ap-south-1
+    acl: public-read
+    tags:
+      Project: OptiFlow
+      Environment: development
+      Owner: Sunil
+    objects:
+      - key: test/sample.json
+        source: test/sample.json
+      - key: mock/data.csv
+        source: mock/data.csv

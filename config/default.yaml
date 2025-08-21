@@ -1,0 +1,20 @@
+environment: production
+dry_run: true
+region: ap-south-1
+
+paths:
+  iam_config_path: config/iam_config.yaml
+  cicd_config_path: config/cicd_config.yaml
+  lambda_config_path: config/lambda_config.yaml
+  rds_config_path: config/rds_config.yaml
+  s3_config_path: config/s3_config.yaml
+
+logging:
+  level: INFO
+  format: "%(asctime)s - %(levelname)s - %(message)s"
+  destination: logs/migration_agent.log
+
+tags:
+  Project: OptiFlow
+  Owner: Sunil
+  ManagedBy: OptiFlowCopilotteam
