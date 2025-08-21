@@ -22,7 +22,8 @@ migration_agent/
 │   └── rds/
 ├── utils/                 # Common helpers (logging, config, auth)
 ├── config/                # YAML/JSON configs for service mappings
-└── main.py     # Entry point: parses args, invokes runner
+└── main.py
+|-- run_all.py             # Script to run all services
 
 
 ## 🚀 Getting Started
