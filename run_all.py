@@ -1,4 +1,3 @@
-below code will go in to run_all.py right ? tell me in one line
 
 from utils.config_loader import load_yaml_config
 from services.iam.run import run as run_iam

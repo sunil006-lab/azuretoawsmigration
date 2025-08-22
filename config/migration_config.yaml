@@ -18,7 +18,8 @@ services:
     - s3
     #- ec2_instances
     #- vpc
-github:
-  personal_access_token: ${GITHUB_PERSONAL_ACCESS_TOKEN}
-  repository: ${GITHUB_REPOSITORY}
-  branch: ${GITHUB_BRANCH}
+# To store Git Hub credentials, use .env file
+#github:
+  #personal_access_token: ${GITHUB_PERSONAL_ACCESS_TOKEN}
+  #repository: ${GITHUB_REPOSITORY}
+  #branch: ${GITHUB_BRANCH}
