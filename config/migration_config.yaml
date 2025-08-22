@@ -11,6 +11,14 @@ aws:
 
 services:
   migrate:
-    - storage_accounts
-    - iam_roles
-    - ci_cd_pipelines
+    - cicd
+    - iam
+    - lambda
+    - rds
+    - s3
+    #- ec2_instances
+    #- vpc
+github:
+  personal_access_token: ${GITHUB_PERSONAL_ACCESS_TOKEN}
+  repository: ${GITHUB_REPOSITORY}
+  branch: ${GITHUB_BRANCH}
