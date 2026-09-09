@@ -11,21 +11,48 @@ This AI-powered migration agent automates the transition of IAM policies, CI/CD 
 - Config-driven orchestration for flexible execution
 
 ## 🧩 Directory Structure
-migration_agent/
-├── core/                  # Shared orchestration logic
-│   └── runner.py
-├── services/              # Each cloud service gets its own module
-│   ├── iam/
+```
+├── /
+│   ├── AI-Driven-CloudService-ConversionTool-AzureToAWS.docx
+│   ├── main.py
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── run_all.py
+├── config/
+│   ├── cicd_config.yaml
+│   ├── default.yaml
+│   ├── iam_config.yaml
+│   ├── migration_config.yaml
+│   ├── project_keys.env
+│   ├── rds_config.yaml
+│   ├── s3_config.yaml
+│   ├── __init__.py
+├── core/
+│   ├── runner.py
+│   ├── __init__.py
+├── logs/
+│   ├── migration_log.log
+├── services/
 │   ├── cicd/
-│   ├── s3/
+│   │   ├── run.py
+│   │   ├── __init__.py
+│   ├── iam/
+│   │   ├── run.py
+│   │   ├── __init__.py
 │   ├── lambda/
-│   └── rds/
-├── utils/                 # Common helpers (logging, config, auth)
-├── config/                # YAML/JSON configs for service mappings
-└── main.py
-|-- run_all.py             # Script to run all services
-
-
+│   │   ├── run.py
+│   │   ├── __init__.py
+│   ├── rds/
+│   │   ├── run.py
+│   │   ├── __init__.py
+│   ├── s3/
+│   │   ├── run.py
+│   │   ├── __init__.py
+├── utils/
+│   ├── config_loader.py
+│   ├── helpers.py
+│   ├── __init__.py
+```
 ## 🚀 Getting Started
 ### 1. Clone the Repository
 ```bash
