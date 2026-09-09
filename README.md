@@ -106,6 +106,8 @@ pytest tests/
 ```	
 ## Run instructions: (run all services)
 ```bash
+
+## Implementation of AI in the CCT (Mapping is taken care with intelligent services)
 python run_all.py
 ```
 ## 📝 Documentation
