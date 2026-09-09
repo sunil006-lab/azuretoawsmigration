@@ -115,3 +115,4 @@ python run_all.py
 python docs/generate_docs.py
 ```
 
+## Implementation of AI in CCT (Mapping is taken care using intelligent services)
